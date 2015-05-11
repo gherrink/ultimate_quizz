@@ -8,7 +8,17 @@
 </head>
 <body>
 
-<%= yield %>
+<nav class="ui fixed menu inverted navbar">
+  <a href="/" class="brand item">Home</a>
+</nav>
+
+<main class="ui page grid">
+  <div class="row">
+    <div class="column ui segment">
+      <%= yield %>
+    </div>
+  </div>
+</main>
 
 </body>
 </html>
