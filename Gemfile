@@ -48,3 +48,4 @@ end
 
 gem 'semantic-ui-sass'
 gem 'slim-rails'
+gem 'bcrypt'
