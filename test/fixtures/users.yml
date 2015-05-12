@@ -3,4 +3,4 @@
 one:
   name: Fred
   email: fred@flintstone.com
-  password_digest: <%= BCrypt::Password.create("foobar1", cost: 4) %>
+  password_digest: <%= User.digest('foobar1') %>
