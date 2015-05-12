@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title UltimateQuizz
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    nav.ui.fixed.menu.inverted.navbar
+      a.brand.item href="/" Home
+
+    main.ui.page.grid
+      div.row
+        div.column.ui.segment
+          == render 'breadcrumbs'
+          == yield
+
+    == debug(params) if Rails.env.development?

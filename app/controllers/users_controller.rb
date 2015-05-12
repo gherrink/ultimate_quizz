@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @breadcrumbs = [
+        {:label => "Users"},
+      ]
   end
 
   # GET /users/1
@@ -15,6 +18,9 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @breadcrumbs = [
+        {:label => "Register"}
+      ]
   end
 
   # GET /users/1/edit
@@ -69,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password_digest)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end

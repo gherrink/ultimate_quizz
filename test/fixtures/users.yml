@@ -1,1 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Fred
+  email: fred@flintstone.com
+  password_digest: <%= BCrypt::Password.create("foobar1", cost: 4) %>

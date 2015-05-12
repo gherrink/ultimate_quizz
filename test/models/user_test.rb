@@ -31,6 +31,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user can be authenticated with wrong password" do
-    assert @user.authenticate("foobaz")
+    assert_not @user.authenticate("foobaz")
   end
 end

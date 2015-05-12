@@ -1,0 +1,17 @@
+- if defined? @breadcrumbs
+  div.ui.breadcrumb
+    a.section href="/"
+      i.home.icon
+      i.right.chevron.icon.divider
+    - count = 0
+    - @breadcrumbs.each do |breadcrumb|
+      - count = count + 1
+      - if count + 1 == @breadcrumbs.length
+        - if breadcrumb.has_key?(:url)
+          a.section href="#{breadcrumb[:url]}" #{breadcrumb[:label]}
+          i.right.chevron.icon.divider
+        - else
+          a.section #{breadcrumb[:label]}
+          i.right.chevron.icon.divider
+      - else
+        div.active.section #{breadcrumb[:label]}
