@@ -12,4 +12,8 @@ p
 
 = link_to 'Edit', edit_user_path(@user)
 '|
+- if current_user.admin? && !current_user?(@user)
+  = link_to "Delete", user, method: :delete, data: {confirm: "You sure?"}
+  '|
+
 = link_to 'Back', users_path

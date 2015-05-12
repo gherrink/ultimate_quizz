@@ -3,4 +3,17 @@
 one:
   name: Fred
   email: fred@flintstone.com
-  password_digest: <%= User.digest('foobar1') %>
+  password_digest: <%= User.digest('password') %>
+
+admin:
+  name: Administrator
+  email: admin@admin.com
+  password_digest: <%= User.digest('password') %>
+  admin: true
+  creator: true
+
+creator:
+  name: Creator
+  email: creator@creator.com
+  password_digest: <%= User.digest('password') %>
+  creator: ture

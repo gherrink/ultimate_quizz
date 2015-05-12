@@ -1,11 +1,10 @@
 h1 Listing users
 
-table
+table.ui.table
   thead
     tr
       th Name
       th Email
-      th Password digest
       th
       th
       th
@@ -15,10 +14,12 @@ table
       tr
         td = user.name
         td = user.email
-        td = user.password_digest
         td = link_to 'Show', user
         td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: {:confirm => 'Are you sure?'}, :method => :delete
+        - if !current_user?(user)
+          td = link_to 'Destroy', user, data: {:confirm => 'Are you sure?'}, :method => :delete
+        - else
+          td
 
 br
 

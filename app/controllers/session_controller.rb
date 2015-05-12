@@ -3,6 +3,9 @@ class SessionController < ApplicationController
   include SessionHelper
 
   def new
+    @breadcrumbs = [
+        {:label => "Login"},
+      ]
   end
 
   def create

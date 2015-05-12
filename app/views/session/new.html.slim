@@ -10,4 +10,6 @@ h1 Login
   .field
     = f.label :password
     = f.password_field :password
-  .actions = f.submit
+  = f.submit "Login", class: "ui button"
+  a href="/register" class="button"
+      div.ui.button Register
