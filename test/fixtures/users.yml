@@ -16,4 +16,5 @@ creator:
   name: Creator
   email: creator@creator.com
   password_digest: <%= User.digest('password') %>
-  creator: ture
+  admin: true
+  creator: true
