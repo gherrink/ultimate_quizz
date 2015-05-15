@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :questions
+  resources :questions
+  resources :questions
   resources :categories
   get    'register'  => 'users#new'
   get    'login'   => 'session#new'

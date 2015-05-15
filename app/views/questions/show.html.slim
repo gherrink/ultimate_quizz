@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Question:
+  = @question.question
+p
+  strong Answer correct:
+  = @question.answer_correct
+p
+  strong Answer wrong 1:
+  = @question.answer_wrong_1
+p
+  strong Answere wrong 2:
+  = @question.answere_wrong_2
+p
+  strong Answere wrong 3:
+  = @question.answere_wrong_3
+
+= link_to 'Edit', edit_question_path(@question)
+'|
+= link_to 'Back', questions_path
