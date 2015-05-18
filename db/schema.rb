@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(version: 20150518083230) do
     t.string   "question"
     t.string   "answer_correct"
     t.string   "answer_wrong_1"
-    t.string   "answere_wrong_2"
-    t.string   "answere_wrong_3"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "answer_wrong_2"
+    t.string   "answer_wrong_3"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "rating"
   end
 

@@ -1,3 +1,11 @@
 h1 Question
 
 h3 = @question.question
+
+div.ui.buttons
+  - @answers.each do |answer|
+    - url = "/game/answer/" + CGI::escape(answer)
+    = link_to url
+      div.ui.button = answer
+    - if !(answer === @answers.last)
+      div.or

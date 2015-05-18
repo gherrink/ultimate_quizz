@@ -1,0 +1,27 @@
+h1 Answer
+
+h3 = @question.question
+
+div.ui.buttons
+  - @answers.each do |answer|
+    - displayed = false
+    - if answer === @correct_answer || (answer === @answerd && answer === @correct_answer)
+      - displayed = true
+      div.ui.button.positive = answer
+    - if answer === @answerd && ! displayed
+      - displayed = true
+      div.ui.button.negative = answer
+    - if ! displayed
+      div.ui.button = answer
+    - if !(answer === @answers.last)
+      div.or
+
+br
+br
+
+- if @correct_answerd
+  = link_to "/game/question"
+    div.ui.button Next Question
+- if !@correct_answerd
+  = link_to "/game/score"
+    div.ui.button Show Score

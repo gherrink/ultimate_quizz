@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-    # TODO add categories @question.categories << Category.find(1)
+    # TODO add categories @question.categories << Category.find(1)#
 
     respond_to do |format|
       if @question.save
@@ -72,7 +72,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question, :answer_correct, :answer_wrong_1, :answere_wrong_2, :answere_wrong_3, :category_id)
+      params.require(:question).permit(:question, :answer_correct, :answer_wrong_1, :answer_wrong_2, :answer_wrong_3, :category_id)
     end
 
     # Confirms a logged-in user.

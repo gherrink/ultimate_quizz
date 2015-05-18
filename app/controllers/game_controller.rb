@@ -1,6 +1,8 @@
 class GameController < ApplicationController
   before_action :logged_in_user,  only: [:index, :category, :category_select, :question]
-  before_action :game_started,    only: [:question]
+  before_action :game_started,    only: [:question, :answer]
+  before_action :question_asked,  only: [:answer]
+  before_action :answer_exists,   only: [:answer]
   include SessionHelper
 
   # GET /game
@@ -34,7 +36,18 @@ class GameController < ApplicationController
       redirect_to game_category_url
     else
       @question = questions.first
+      ask @question
+      @answers = current_answers
     end
+  end
+
+  def answer
+    @question = current_question
+    @answerd = params[:answer]
+    @answers = current_answers
+    @correct_answer = current_answer
+    @correct_answerd = @answerd == @correct_answer
+    end_question
   end
 
   private
@@ -53,4 +66,15 @@ class GameController < ApplicationController
         redirect_to game_category_url
       end
     end
+
+    # Confirm that a question is asked
+    def question_asked
+      redirect_to game_question_url unless question?
+    end
+
+    # Confirm that the answer exists
+    def answer_exists
+      redirect_to game_question_url unless current_answers.include?(params[:answer])
+    end
+
 end

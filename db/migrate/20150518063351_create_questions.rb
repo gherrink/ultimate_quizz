@@ -4,8 +4,8 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :question
       t.string :answer_correct
       t.string :answer_wrong_1
-      t.string :answere_wrong_2
-      t.string :answere_wrong_3
+      t.string :answer_wrong_2
+      t.string :answer_wrong_3
 
       t.timestamps null: false
     end

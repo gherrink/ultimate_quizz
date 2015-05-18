@@ -43,7 +43,38 @@ module SessionHelper
 
   # End the current game
   def end_playing
+    end_question
     session.delete(:category_id)
     @current_category = nil
   end
+
+  # Play the given question
+  def ask(question)
+    session[:question_id] = question.id
+    session[:correct_answer] = question.answer_correct
+    session[:current_answers] = [@question.answer_correct, @question.answer_wrong_1, @question.answer_wrong_2, @question.answer_wrong_3].shuffle
+  end
+
+  def current_answer
+    @current_answer ||= session[:correct_answer]
+  end
+
+  def current_answers
+    @current_answers ||= session[:current_answers]
+  end
+
+  def current_question
+    @current_question ||= Question.find_by(id: session[:question_id])
+  end
+
+  def question?
+    !current_question.nil?
+  end
+
+  def end_question
+    session.delete(:question_id)
+    session.delete(:correct_answer)
+    @current_question = nil
+  end
+
 end

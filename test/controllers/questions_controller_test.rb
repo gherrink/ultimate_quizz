@@ -23,8 +23,8 @@ class QuestionsControllerTest < ActionController::TestCase
       post :create, question: {
         answer_correct: @question.answer_correct,
         answer_wrong_1: @question.answer_wrong_1,
-        answere_wrong_2: @question.answere_wrong_2,
-        answere_wrong_3: @question.answere_wrong_3,
+        answer_wrong_2: @question.answer_wrong_2,
+        answer_wrong_3: @question.answer_wrong_3,
         rating: @question.rating,
         question: @question.question
         }
@@ -47,8 +47,8 @@ class QuestionsControllerTest < ActionController::TestCase
     patch :update, id: @question, question: {
       answer_correct: @question.answer_correct,
       answer_wrong_1: @question.answer_wrong_1,
-      answere_wrong_2: @question.answere_wrong_2,
-      answere_wrong_3: @question.answere_wrong_3,
+      answer_wrong_2: @question.answer_wrong_2,
+      answer_wrong_3: @question.answer_wrong_3,
       question: @question.rating,
       question: @question.question }
     assert_redirected_to question_path(assigns(:question))
