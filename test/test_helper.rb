@@ -27,6 +27,18 @@ class ActiveSupport::TestCase
     end
   end
 
+  def play(category)
+    if integration_test?
+      get :category_select, {:id => category.id.to_s}
+    else
+      session[:category_id] = category.id
+    end
+  end
+
+  def is_playing?
+    !session[:category_id].nil?
+  end
+
   private
 
     # Returns true inside an integration test.

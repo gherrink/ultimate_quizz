@@ -25,4 +25,25 @@ module SessionHelper
     session.delete(:user_id)
     @current_user = nil
   end
+
+  # Play the given category
+  def play_category(category)
+    session[:category_id] = category.id
+  end
+
+  # Returns the current played category (if any)
+  def current_category
+    @current_category ||= Category.find_by(id: session[:category_id])
+  end
+
+  # Returns true if user is playing a game.
+  def playing?
+    !current_category.nil?
+  end
+
+  # End the current game
+  def end_playing
+    session.delete(:category_id)
+    @current_category = nil
+  end
 end

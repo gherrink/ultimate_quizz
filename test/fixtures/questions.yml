@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  question: MyString
-  answer_correct: MyString
-  answer_wrong_1: MyString
-  answere_wrong_2: MyString
-  answere_wrong_3: MyString
+  question: Question one?
+  answer_correct: right
+  answer_wrong_1: wrong 1
+  answere_wrong_2: wrong 2
+  answere_wrong_3: wrong3
   rating: 10
 
 two:
-  question: MyString
-  answer_correct: MyString
-  answer_wrong_1: MyString
-  answere_wrong_2: MyString
-  answere_wrong_3: MyString
+  question: Question two?
+  answer_correct: correct
+  answer_wrong_1: false 1
+  answere_wrong_2: false 2
+  answere_wrong_3: false 3
   rating: 15

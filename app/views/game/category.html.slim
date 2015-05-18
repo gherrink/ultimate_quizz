@@ -1,0 +1,9 @@
+h1 Category
+
+p Select one Category
+
+div.ui.vertical.buttons
+  - @categories.each do |category|
+    - url = "/game/category/" + category.id.to_s
+    = link_to url
+      div.ui.button = category.name

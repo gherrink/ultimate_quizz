@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user,  only: [:index, :show, :edit, :update, :destroy]
   include SessionHelper
-  
+
   # GET /questions
   # GET /questions.json
   def index
@@ -27,6 +27,7 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
+    # TODO add categories @question.categories << Category.find(1)
 
     respond_to do |format|
       if @question.save

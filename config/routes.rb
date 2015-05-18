@@ -4,11 +4,17 @@ Rails.application.routes.draw do
   resources :questions
   resources :questions
   resources :categories
-  get    'register'  => 'users#new'
-  get    'login'   => 'session#new'
-  post   'login'   => 'session#create'
-  delete 'logout'  => 'session#destroy'
   resources :users
+
+  get     'register'  => 'users#new'
+  get     'login'     => 'session#new'
+  post    'login'     => 'session#create'
+  delete  'logout'    => 'session#destroy'
+
+  get     'game'              => 'game#index'
+  get     'game/category'     => 'game#category'
+  get     'game/category/:id' => 'game#category_select'
+  get     'game/question'     => 'game#question'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
