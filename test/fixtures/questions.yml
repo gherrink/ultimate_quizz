@@ -6,6 +6,7 @@ one:
   answer_wrong_1: MyString
   answere_wrong_2: MyString
   answere_wrong_3: MyString
+  rating: 10
 
 two:
   question: MyString
@@ -13,3 +14,4 @@ two:
   answer_wrong_1: MyString
   answere_wrong_2: MyString
   answere_wrong_3: MyString
+  rating: 15

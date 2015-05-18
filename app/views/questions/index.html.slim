@@ -8,6 +8,7 @@ table.ui.table
       th Answer wrong 1
       th Answere wrong 2
       th Answere wrong 3
+      th Rating
       th
       th
       th
@@ -20,6 +21,7 @@ table.ui.table
         td = question.answer_wrong_1
         td = question.answere_wrong_2
         td = question.answere_wrong_3
+        td = question.rating
         td = link_to 'Show', question
         td = link_to 'Edit', edit_question_path(question)
         td = link_to 'Destroy', question, data: {:confirm => 'Are you sure?'}, :method => :delete
