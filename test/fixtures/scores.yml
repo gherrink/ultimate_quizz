@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  score: 1
-  user: 
-  category: 
+score_one:
+  score: 30
+  category: category
+  user: fred
 
-two:
-  score: 1
-  user: 
-  category: 
+score_two:
+  score: 20
+  category: category
+  user: fred

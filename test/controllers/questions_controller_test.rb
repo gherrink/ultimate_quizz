@@ -2,7 +2,7 @@ require 'test_helper'
 
 class QuestionsControllerTest < ActionController::TestCase
   setup do
-    @question = questions(:one)
+    @question = questions(:question_one)
     @creator = users(:creator)
     log_in_as(@creator)
   end

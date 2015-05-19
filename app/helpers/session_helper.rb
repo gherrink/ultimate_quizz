@@ -29,6 +29,9 @@ module SessionHelper
   # Play the given category
   def play_category(category)
     session[:category_id] = category.id
+    session[:show_score] = false
+    session[:score] = 0
+    session[:asked_questions] = []
   end
 
   # Returns the current played category (if any)
@@ -43,9 +46,14 @@ module SessionHelper
 
   # End the current game
   def end_playing
-    end_question
+    end_question false
     session.delete(:category_id)
     @current_category = nil
+    session.delete(:score)
+    @current_score = nil
+    session.delete(:show_score)
+    @asked_questions = nil
+    session.delete(:asked_questions)
   end
 
   # Play the given question
@@ -71,10 +79,38 @@ module SessionHelper
     !current_question.nil?
   end
 
-  def end_question
+  def end_question(answerd_correct)
+    if(answerd_correct)
+      # TODO clean this up
+      if(@current_question.rating.nil?)
+        session[:score] = session[:score] + 5
+      else
+        session[:score] = session[:score] + @current_question.rating
+      end
+    else
+      session[:show_score] = true
+    end
+    add_asked_question session[:question_id]
     session.delete(:question_id)
     session.delete(:correct_answer)
     @current_question = nil
   end
+
+  def asked_questions
+    @asked_questions = session[:asked_questions]
+  end
+
+  def current_score
+    @current_score = session[:score]
+  end
+
+  def show_score?
+    !current_score.nil? && current_score
+  end
+
+  private
+    def add_asked_question(question_id)
+      session[:asked_questions] << question_id
+    end
 
 end

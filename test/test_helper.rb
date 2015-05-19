@@ -32,6 +32,9 @@ class ActiveSupport::TestCase
       get :category_select, {:id => category.id.to_s}
     else
       session[:category_id] = category.id
+      session[:show_score] = false
+      session[:score] = 0
+      session[:asked_questions] = []
     end
   end
 
@@ -39,6 +42,20 @@ class ActiveSupport::TestCase
     !session[:category_id].nil?
   end
 
+  def ask(question)
+    session[:question_id] = question.id
+    session[:correct_answer] = question.answer_correct
+    session[:current_answers] = [question.answer_correct, question.answer_wrong_1, question.answer_wrong_2, question.answer_wrong_3].shuffle
+  end
+
+  def is_asked?
+    !session[:question_id].nil? && !session[:correct_answer].nil? && !session[:current_answers].nil?
+  end
+
+  def correct_answer
+    session[:correct_answer]
+  end
+  
   private
 
     # Returns true inside an integration test.

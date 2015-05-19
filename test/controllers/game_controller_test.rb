@@ -3,9 +3,10 @@ require 'test_helper'
 class GameControllerTest < ActionController::TestCase
 
   setup do
-    @category = categories(:one)
+    @category = categories(:category)
     @empty_category = categories(:empty)
     @creator = users(:creator)
+    @question = questions(:question_one)
   end
 
   test "index shoud redirected to login when not logged in" do
@@ -42,7 +43,7 @@ class GameControllerTest < ActionController::TestCase
     assert_redirected_to game_question_path
   end
 
-  test "soud redirected to category on false category" do
+  test "shoud redirected to category on false category" do
     log_in_as(@creator)
     get :category_select, {:id => 0}
     assert_redirected_to game_category_path
@@ -74,6 +75,33 @@ class GameControllerTest < ActionController::TestCase
     get :question
     assert_redirected_to game_category_url
     assert_not is_playing?
+  end
+
+  test "answer shoud redirect to question if no question was asked" do
+    log_in_as(@creator)
+    play @category
+    get :answer, {:answer => 1}
+    assert_redirected_to game_question_url
+  end
+
+  test "answer shoud redirect to question if answer is incorrect" do
+    log_in_as(@creator)
+    play @category
+    get :question
+    assert_response :success
+    assert_template 'game/question'
+    assert is_playing?
+    get :answer, {:answer => 5}
+    assert_redirected_to game_question_url
+  end
+
+  test "answer shoud be displayed" do
+    log_in_as(@creator)
+    play @category
+    ask @question
+    get :answer, {:answer => correct_answer}
+    assert_response :success
+    assert_template 'game/answer'
   end
 
 end

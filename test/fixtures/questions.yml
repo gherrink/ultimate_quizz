@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+question_one:
   question: Question one?
   answer_correct: right
   answer_wrong_1: wrong 1
@@ -8,7 +8,7 @@ one:
   answer_wrong_3: wrong3
   rating: 10
 
-two:
+question_two:
   question: Question two?
   answer_correct: correct
   answer_wrong_1: false 1

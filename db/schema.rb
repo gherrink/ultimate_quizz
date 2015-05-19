@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(version: 20150518083230) do
   create_table "scores", force: :cascade do |t|
     t.integer  "score"
     t.integer  "user_id"
-    t.integer  "catgegory_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "scores", ["catgegory_id"], name: "index_scores_on_catgegory_id"
+  add_index "scores", ["category_id"], name: "index_scores_on_category_id"
   add_index "scores", ["user_id"], name: "index_scores_on_user_id"
 
   create_table "users", force: :cascade do |t|
