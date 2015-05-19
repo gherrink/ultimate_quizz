@@ -2,6 +2,7 @@ require 'test_helper'
 
 class QuestionsControllerTest < ActionController::TestCase
   setup do
+    @category = categories(:category)
     @question = questions(:question_one)
     @creator = users(:creator)
     log_in_as(@creator)
@@ -26,7 +27,8 @@ class QuestionsControllerTest < ActionController::TestCase
         answer_wrong_2: @question.answer_wrong_2,
         answer_wrong_3: @question.answer_wrong_3,
         rating: @question.rating,
-        question: @question.question
+        question: @question.question,
+        categories: [@category.id]
         }
     end
 

@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user,  only: [:index, :show, :edit, :update, :destroy]
+  before_action :logged_in_user,  only: [:index, :show, :edit, :create, :update, :destroy]
+  before_action :user_creator,  only: [:index, :show, :edit, :create, :update, :destroy]
   include SessionHelper
 
   # GET /questions
@@ -28,6 +29,15 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     # TODO add categories @question.categories << Category.find(1)#
+    categories = params[:question][:category_ids]
+    if !categories.nil? && !categories.empty?
+      categories.each do |category_id|
+        category = Category.find(category_id)
+        if !category.nil?
+          @question.categories << category
+        end
+      end
+    end
 
     respond_to do |format|
       if @question.save
@@ -72,7 +82,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question, :answer_correct, :answer_wrong_1, :answer_wrong_2, :answer_wrong_3, :category_id)
+      params.require(:question).permit(:question, :answer_correct, :answer_wrong_1, :answer_wrong_2, :answer_wrong_3, :rating, :category_ids => [])
     end
 
     # Confirms a logged-in user.
@@ -81,7 +91,9 @@ class QuestionsController < ApplicationController
         flash[:negative] = "Please log in."
         redirect_to login_url
       end
+    end
 
+    def user_creator
       redirect_to(root_url) unless current_user.creator?
     end
 end

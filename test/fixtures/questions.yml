@@ -5,7 +5,7 @@ question_one:
   answer_correct: right
   answer_wrong_1: wrong 1
   answer_wrong_2: wrong 2
-  answer_wrong_3: wrong3
+  answer_wrong_3: wrong 3
   rating: 10
 
 question_two:

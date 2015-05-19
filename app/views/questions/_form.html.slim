@@ -6,6 +6,10 @@
         - @question.errors.full_messages.each do |message|
           li = message
 
+  - option_array = []
+  - Category.all.each do |category|
+    - option_array << [category.name, category.id]
+
   .field
     = f.label :question
     = f.text_field :question
@@ -21,7 +25,24 @@
   .field
     = f.label :answer_wrong_3
     = f.text_field :answer_wrong_3
-    .field
-      = f.label :rating
-      = f.text_field :rating
+  .field
+    = f.label :rating
+    = f.text_field :rating
+  .field
+    = f.label :categories
+    div.categorylist
+      - @question.categories.each do |category|
+        span.element
+          span = category.name
+          = f.hidden_field :category_ids, :multiple => true, :value => category.id
+    div.ui.two.column.grid
+      div.column
+        div.ui.horizontal.segment
+          select.ui.search.dropdown#categoryselect
+            = options_for_select(option_array)
+      div.column
+        div.ui.horizontal.segment
+          = link_to 'add', '#', :onclick => "addCategory()", :class => 'ui button'
+
+  br
   .actions = f.submit
