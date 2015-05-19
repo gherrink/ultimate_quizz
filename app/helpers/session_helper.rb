@@ -81,12 +81,7 @@ module SessionHelper
 
   def end_question(answerd_correct)
     if(answerd_correct)
-      # TODO clean this up
-      if(@current_question.rating.nil?)
-        session[:score] = session[:score] + 5
-      else
-        session[:score] = session[:score] + @current_question.rating
-      end
+      session[:score] = session[:score] + @current_question.rating
     else
       session[:show_score] = true
     end

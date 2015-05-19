@@ -1,25 +1,15 @@
-h1 Listing scores
+h1 Score
 
-table
+table.ui.table
   thead
     tr
       th Score
       th User
       th Category
-      th
-      th
-      th
 
   tbody
     - @scores.each do |score|
       tr
         td = score.score
-        td = score.user
-        td = score.category
-        td = link_to 'Show', score
-        td = link_to 'Edit', edit_score_path(score)
-        td = link_to 'Destroy', score, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Score', new_score_path
+        td = score.user.name
+        td = score.category.name

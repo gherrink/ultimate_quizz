@@ -37,6 +37,7 @@ class GameController < ApplicationController
       redirect_to game_category_url
     elsif @count_questions <= 0
       flash[:negative] = "No more Questions available for this category"
+      save_score
       redirect_to score_url
     else
       offset = rand(@count_questions)
@@ -53,6 +54,9 @@ class GameController < ApplicationController
     @answers = current_answers
     @correct_answer = current_answer
     @correct_answerd = @answerd == @correct_answer
+    if !@correct_answerd
+      save_score
+    end
     end_question @correct_answerd
   end
 
@@ -86,6 +90,14 @@ class GameController < ApplicationController
     # Confirm that the answer exists
     def answer_exists
       redirect_to game_question_url unless current_answers.include?(params[:answer])
+    end
+
+    # Saves the reached score
+    def save_score
+      score = new Score
+      score.score = current_score
+      score.category = current_category
+      score.user = current_user
     end
 
 end
