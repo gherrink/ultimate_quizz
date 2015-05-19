@@ -10,9 +10,19 @@ html
     nav.ui.fixed.menu.inverted.navbar
       a.brand.item href="/" Home
       - if logged_in?
+        -if current_user.creator
+          a.brand.item href="/categories" Categories
+          a.brand.item href="/questions" Questions
+        -if current_user.admin
+          a.brand.item href="/users" Users
+
+        a.brand.item href="/game" Game
+        a.brand.item href="/scores" Score
         a.brand.item href="/logout" Logout
       - else
+        a.brand.item href="/scores" Score
         a.brand.item href="/login" Login
+
 
     main.ui.page.grid
       div.row
