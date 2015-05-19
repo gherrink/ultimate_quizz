@@ -100,7 +100,7 @@ module SessionHelper
   end
 
   def show_score?
-    !current_score.nil? && current_score
+    !current_score.nil? && current_score >= 0
   end
 
   private
