@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category,    only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user,  only: [:index, :show, :edit, :update, :destroy]
-  before_action :creator_user,    only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user,  only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  before_action :creator_user,    only: [:index, :show, :new, :edit, :create, :update, :destroy]
   include SessionHelper
 
   # GET /categories

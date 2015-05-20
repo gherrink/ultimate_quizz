@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user,  only: [:index, :show, :edit, :create, :update, :destroy]
-  before_action :user_creator,  only: [:index, :show, :edit, :create, :update, :destroy]
+  before_action :logged_in_user,  only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  before_action :user_creator,  only: [:index, :show, :new, :edit, :create, :update, :destroy]
   include SessionHelper
 
   # GET /questions
@@ -94,6 +94,6 @@ class QuestionsController < ApplicationController
     end
 
     def user_creator
-      redirect_to(root_url) unless current_user.creator?
+      redirect_to root_url unless current_user.creator?
     end
 end

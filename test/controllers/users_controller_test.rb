@@ -7,11 +7,9 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    #TODO I still geht redirected and don't know why
-    #log_in_as(@admin)
-    #get :index
-    #assert_response :success
-    #assert_not_nil assigns(@admin)
+    log_in_as(@admin)
+    get :index
+    assert_response :success
   end
 
   test "should get new" do
@@ -70,5 +68,12 @@ class UsersControllerTest < ActionController::TestCase
       delete :destroy, id: @admin
     end
     assert_redirected_to root_url
+  end
+
+  test "should destroy" do
+    log_in_as(@admin)
+    assert_difference('User.count', -1) do
+      delete :destroy, id: @user
+    end
   end
 end
