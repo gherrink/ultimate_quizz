@@ -29,7 +29,7 @@ class ActiveSupport::TestCase
 
   def play(category)
     if integration_test?
-      get :category_select, {:id => category.id.to_s}
+      post game_category_select_path(id: category.id)
     else
       session[:category_id] = category.id
       session[:show_score] = false
@@ -52,10 +52,31 @@ class ActiveSupport::TestCase
     !session[:question_id].nil? && !session[:correct_answer].nil? && !session[:current_answers].nil?
   end
 
+  def current_question_id
+    session[:question_id]
+  end
+
   def correct_answer
     session[:correct_answer]
   end
-  
+
+  def current_answers
+    session[:current_answers]
+  end
+
+  def current_score
+    session[:score]
+  end
+
+  def show_score(score)
+    session[:show_score] = true
+    session[:score] = score
+  end
+
+  def show_score?
+    session[:show_score]
+  end
+
   private
 
     # Returns true inside an integration test.

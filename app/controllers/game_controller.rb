@@ -15,7 +15,7 @@ class GameController < ApplicationController
     @categories = Category.all
   end
 
-  # GET /game/category/1
+  # POST /game/category/1
   def category_select
     category = Category.find_by_id(params[:id])
 
@@ -38,6 +38,7 @@ class GameController < ApplicationController
     elsif @count_questions <= 0
       flash[:negative] = "No more Questions available for this category"
       save_score
+      end_playing
       redirect_to scores_url
     else
       offset = rand(@count_questions)
@@ -47,17 +48,19 @@ class GameController < ApplicationController
     end
   end
 
-  # GET game/answer/1
+  # put game/answer/1
   def answer
     @question = current_question
     @answerd = params[:answer]
     @answers = current_answers
     @correct_answer = current_answer
     @correct_answerd = @answerd == @correct_answer
-    if !@correct_answerd
+    if @correct_answerd
+      end_question @correct_answerd
+    else
       save_score
+      end_playing
     end
-    end_question @correct_answerd
   end
 
   private
@@ -94,12 +97,14 @@ class GameController < ApplicationController
 
     # Saves the reached score
     def save_score
-      score = Score.new
-      score.score = current_score
-      score.category = current_category
-      score.user = current_user
+      if current_score > 0
+        score = Score.new
+        score.score = current_score
+        score.category = current_category
+        score.user = current_user
 
-      score.save
+        score.save
+      end
     end
 
 end

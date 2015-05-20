@@ -4,8 +4,7 @@ h3 = @question.question
 
 div.ui.buttons
   - @answers.each do |answer|
-    - url = "/game/answer/" + CGI::escape(answer)
-    = link_to url
+    = link_to game_answer_path(answer: answer), :method => :put
       div.ui.button = answer
     - if !(answer === @answers.last)
       div.or

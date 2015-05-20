@@ -46,14 +46,14 @@ module SessionHelper
 
   # End the current game
   def end_playing
-    end_question false
+    session.delete(:question_id)
+    session.delete(:correct_answer)
+    @current_question = nil
     session.delete(:category_id)
     @current_category = nil
-    session.delete(:score)
-    @current_score = nil
-    session.delete(:show_score)
     @asked_questions = nil
     session.delete(:asked_questions)
+    session[:show_score] = true
   end
 
   # Play the given question
@@ -82,8 +82,6 @@ module SessionHelper
   def end_question(answerd_correct)
     if(answerd_correct)
       session[:score] = session[:score] + @current_question.rating
-    else
-      session[:show_score] = true
     end
     add_asked_question session[:question_id]
     session.delete(:question_id)
@@ -101,6 +99,12 @@ module SessionHelper
 
   def show_score?
     !current_score.nil? && current_score >= 0
+  end
+
+  def delete_score
+    session.delete(:score)
+    @current_score = nil
+    session.delete(:show_score)
   end
 
   private

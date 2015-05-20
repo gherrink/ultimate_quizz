@@ -60,10 +60,19 @@ class CategoriesControllerTest < ActionController::TestCase
   test "should create category" do
     log_in_as(@creator)
     assert_difference('Category.count') do
-      post :create, category: { name: @category.name }
+      post :create, category: { name: "New category" }
     end
 
     assert_redirected_to category_path(assigns(:category))
+  end
+
+  test "shoud not create wrong category" do
+    log_in_as(@creator)
+    assert_no_difference('Category.count') do
+      post :create, category: { name: ""}
+    end
+
+    assert_template 'categories/new'
   end
 
   test "should get redirected on show" do

@@ -90,6 +90,22 @@ class QuestionsControllerTest < ActionController::TestCase
     assert_redirected_to question_path(assigns(:question))
   end
 
+  test "shoud not create wrong question" do
+    log_in_as(@creator)
+    assert_no_difference('Question.count') do
+      post :create, question: {
+        answer_correct: "a",
+        answer_wrong_1: "b",
+        answer_wrong_2: "b",
+        answer_wrong_3: "c",
+        rating: 0,
+        question: "Is this a question?"
+        }
+    end
+
+    assert_template 'questions/new'
+  end
+
   test "should get redirected on show" do
     get :show, id: @question
     assert_redirected_to login_path

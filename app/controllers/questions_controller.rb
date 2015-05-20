@@ -28,7 +28,6 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-    # TODO add categories @question.categories << Category.find(1)#
     categories = params[:question][:category_ids]
     if !categories.nil? && !categories.empty?
       categories.each do |category_id|

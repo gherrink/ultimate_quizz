@@ -1,9 +1,10 @@
 class Question < ActiveRecord::Base
   has_and_belongs_to_many :categories
 
-  validates :question, :answer_correct, :answer_wrong_1, :answer_wrong_2, :answer_wrong_3, :categories, presence: true
-  validates :question, length: { in: 6..255 }
+  validates :question, :answer_correct, :answer_wrong_1, :answer_wrong_2, :answer_wrong_3, :categories, :rating, presence: true
+  validates :question, uniqueness: true, length: { in: 6..255 }
   validates :answer_correct, :answer_wrong_1, :answer_wrong_2, :answer_wrong_3, length: { in: 2..100 }
+  validates :rating, :inclusion => 1..20
   validate :check_answers_equal
 
   def check_answers_equal

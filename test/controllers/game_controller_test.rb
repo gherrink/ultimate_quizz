@@ -87,11 +87,8 @@ class GameControllerTest < ActionController::TestCase
   test "answer shoud redirect to question if answer is incorrect" do
     log_in_as(@creator)
     play @category
-    get :question
-    assert_response :success
-    assert_template 'game/question'
-    assert is_playing?
-    get :answer, {:answer => 5}
+    ask @question
+    get :answer, {:answer => 'something'}
     assert_redirected_to game_question_url
   end
 

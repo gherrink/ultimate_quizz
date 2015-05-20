@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 
   get     'game'                => 'game#index'
   get     'game/category'       => 'game#category'
-  get     'game/category/:id'   => 'game#category_select'
+  post    'game/category/:id'   => 'game#category_select', as: :game_category_select
   get     'game/question'       => 'game#question'
-  get     'game/answer/:answer' => 'game#answer'
+  put     'game/answer/:answer' => 'game#answer', as: :game_answer
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
